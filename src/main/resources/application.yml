@@ -1,0 +1,37 @@
+spring:
+  activemq:
+    broker-url: vm://embedded?broker.persistent=false,useShutdownHook=false
+    in-memory: true
+    non-blocking-redelivery: true
+    packages:
+      trust-all: false
+      trusted: com.example
+    pool:
+      block-if-full: true
+      block-if-full-timeout: -1
+      enabled: false
+      idle-timeout: 30000
+      max-connections: 1
+      time-between-expiration-check: -1
+      use-anonymous-producers: true
+      max-sessions-per-connection: 500
+  jms:
+    listener:
+      acknowledge-mode: auto
+      auto-startup: true
+      concurrency: 5
+      max-concurrency: 10
+    pub-sub-domain: false
+    template:
+      default-destination:
+      delivery-mode: non_persistent
+      priority: 100
+      qos-enabled: true
+      receive-timeout: 1000
+      time-to-live: 36000
+  application:
+    name: embedded-activemq
+server:
+  port: 80
+  error:
+    include-message: always
